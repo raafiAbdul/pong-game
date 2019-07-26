@@ -1,5 +1,749 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pong</title>
+	<link rel="shortcut icon" type="images/png" href="PONG.png">
+	<style type="text/css">
+		* { 
+			padding: 0;
+			margin: 0;
+		}
 
+		h1 {
+			color: white;
+			text-align: center;
+			font-family: Consolas;
+			font-size: 300px;
+			text-transform: uppercase;
+			animation: myanimation 1s infinite;
+		}
+
+		@keyframes myanimation {
+			from{color: grey;}
+			to{color: white;}
+		}
+
+		body {
+			background-color: black;
+		}
+
+		h3 {
+			font-size: 45px;
+			font-family: arial;
+			text-align: center;
+			padding: auto, 0;
+			font-weight: 700;
+			color: white;
+		}
+
+		button {
+			height: 200px;
+			width: 400px;
+			background-color: black;
+			border: 10px solid white;
+			margin: 50px 180px 0;
+			transition: all 2s ease;
+		}
+
+		button:hover {
+			height: 280px;
+			width: 480px;
+		}
+
+		canvas	{
+			border: 1px white solid;
+			display: none;
+			margin: 0 auto;
+		}
+
+		h2 {
+			display: block;
+			width: fit-content;
+			height: fit-content;
+			font-family: arial;
+			font-size: 40px;
+			margin-left: 955px;
+			color: white;
+		}
+
+		.div {
+			display: block;
+			height: fit-content;
+			width: fit-content;
+			margin: 0 auto;
+		}
+
+		.div2 {
+			display: none;
+			height: fit-content;
+			width: fit-content;
+			margin: 50px auto;
+		}
+
+		.div2 .button2 p {
+			font-size: 45px;
+			font-family: arial;
+			text-align: center;
+			padding: auto, 0;
+			font-weight: 700;
+			color: white;
+			display: none;
+		}
+
+		.div2 .button3 p {
+			font-size: 45px;
+			font-family: arial;
+			text-align: center;
+			padding: auto, 0;
+			font-weight: 700;
+			color: white;
+			display: none;
+		}
+
+		.div2 .button2{
+			height: 200px;
+			width: 400px;
+			background-color: black;
+			border: 10px solid white;
+			margin: 50px auto 0;
+			display: none;
+			transition: all 2s ease;
+		}
+
+		.div2 .button2:hover {
+			height: 280px;
+			width: 480px;
+		}
+
+		.div2 .button3{
+			height: 200px;
+			width: 400px;
+			background-color: black;
+			border: 10px solid white;
+			margin: 50px auto 0;
+			display: none;
+			transition: all 2s ease;
+		}
+
+		.div2 .button3:hover {
+			height: 280px;
+			width: 480px;
+		}
+
+		h4 {
+			display: none;
+			width: fit-content;
+			height: fit-content;
+			font-family: arial;
+			font-size: 40px;
+			float: right;
+			color: white;
+			margin: 0 350px 0 0;
+		}
+
+		h5 {
+			display: none;
+			width: fit-content;
+			height: fit-content;
+			margin: 0 0 0 350px;
+			font-family: arial;
+			font-size: 40px;
+			float: left;
+			color: white;
+		}
+
+		h6 {
+			display: none;
+			width: fit-content;
+			height: fit-content;
+			font-family: arial;
+			font-size: 40px;
+			text-align: center;
+			color: white;
+		}
+
+		/*this is the help section styling*/
+		#partr {
+			display: none;
+			width: fit-content;
+			height: fit-content;
+			font-family: arial;
+			font-size: 40px;
+			color: white;
+			margin: 10px auto 0;
+		}
+
+		#parhelp1 {
+			display: none;
+			width: 1280px;
+			height: fit-content;
+			font-family: arial;
+			font-size: 35px;
+			color: white;
+			margin: 20px auto 0;
+			text-align: center;
+		}
+
+		#parhelp2 {
+			display: none;
+			width: 1400px;
+			text-align: center;
+			height: fit-content;
+			font-family: arial;
+			font-size: 35px;
+			color: white;
+			margin: 20px auto 0;
+		}
+
+		#partc {
+			display: none;
+			width: fit-content;
+			height: fit-content;
+			font-family: arial;
+			font-size: 40px;
+			color: white;
+			margin: 20px auto 0;
+		}
+
+		#parc1 {
+			display: none;
+			width: fit-content;
+			height: fit-content;
+			font-family: arial;
+			font-size: 35px;
+			color: white;
+			margin: 20px auto 0;
+		}
+
+		#parc2 {
+			display: none;
+			width: fit-content;
+			height: fit-content;
+			font-family: arial;
+			font-size: 35px;
+			color: white;
+			margin: 20px auto 0;
+			text-align: center
+			;
+		}
+
+		.button4 p {
+			font-size: 45px;
+			font-family: arial;
+			padding: auto, 0;
+			font-weight: 700;
+			color: white;
+			display: none;
+			margin: 20px auto;
+		}
+
+		.button4{
+			height: 120px;
+			width: 320px;
+			background-color: black;
+			border: 10px solid white;
+			margin: 50px auto 0;
+			display: none;
+			transition: all 2s ease;
+		}
+
+		.button4:hover {
+			height: 200px;
+			width: 400px;
+		}
+
+		.esc3 {
+			display: none;
+			height: 30px;
+			width: 30px;
+			background-image: url("exitb.png");
+			background-repeat: none;
+			background-size: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+		.div3 {
+			display: none;
+			height: fit-content;
+			width: fit-content;
+			margin: 0 auto;
+		}
+
+		.esc4 {
+			display: none;
+			height: 30px;
+			width: 30px;
+			background-image: url("exitb.png");
+			background-repeat: none;
+			background-size: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+		.esc5 {
+			display: none;
+			height: 30px;
+			width: 30px;
+			background-image: url("exitb.png");
+			background-repeat: none;
+			background-size: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+		.enddiv {
+			display: none;
+			height: fit-content;
+			width: fit-content;
+			margin: 100px auto 0;
+		}
+
+		.endgame {
+			display: none;
+			width: fit-content;
+			height: fit-content;
+			font-family: arial;
+			font-size: 300px;
+			margin-left: 955px;
+			color: white;
+		}
+
+		.esc6 {
+			display: none;
+			height: 30px;
+			width: 30px;
+			background-image: url("exitb.png");
+			background-repeat: none;
+			background-size: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+	</style>
+</head>
+<body>
+	<h2 title="score">0</h2>
+	<h4 title="player1 score">0</h4>
+	<h5 title="player2 score">0</h5>
+	<canvas></canvas>
+	<div class="div">
+	<h1>pong</h1>
+	<button onclick="play()"><h3>Play</h3></button>
+	</div>
+	<div class="div2">
+		<h6>This game has no bouncing physics, so bare with me here.</h6>
+		<button class="button2" onclick="oneP()"><p>1 player</p></button>
+		<button class="button3" onclick="twoP()"><p>2 players</p></button>
+		<button class="button4" onclick="help()"><p>Help</p></button>
+	</div>
+	<div class="div3">
+	<h1 id="partr">Rules</h1>
+	<p id="parhelp1">The goal for the "1 player" version is to hit the ball as many times as you can. Basically an endless and boring mode. If you miss the ball, your score gets reset to 0.</p>
+	<br>
+	<p id="parhelp2">The "2 players" modes goal is kinda different. This gamemode has a 10 points limit, you have to block the ball from passing to your side. If you hit the ball and shoot it to the other side, then you get a point, same thing for the enemy. Lets be honest, if you dont know any of this, then your must be living under the biggest rock.</p>
+	<h2 id="partc">Controls</h2>
+	<p id="parc1">The controls for the one player is "w" and "s".</p>
+	<br>
+	<p id="parc2">The controls for player1(the right one), is "i" and "k". The controls for player 2(the left one), is "w" and "s". Also, ou have to refresh the page to get back to the starting screen just to change game modes because I tried figuring things out but eventually gave up due to 2 hours of nothing.</p>
+	</div>
+	<div class="esc3" onclick="back()"></div>
+	<div class="esc4" onclick="back2()"></div>
+	<div class="enddiv">
+	<p class="endgame">hoW IN THE WORLD dID YOU GET A TIE?</p>
+	<br>
+	<p class="endgame">now refresh the page to play again!</p>
+	</div>
+</body>
+<script type="text/javascript">
+	var para = document.querySelector("h6");
+	var div = document.querySelector(".div");
+	var div2 =  document.querySelector(".div2");
+	var par1 = document.querySelector(".button2 p");
+	var par2 = document.querySelector(".button3 p");
+	var btn2 = document.querySelector(".button2");
+	var btn3 = document.querySelector(".button3");
+	var h1 = document.querySelector("h1");
+	var canvas = document.querySelector("canvas");
+	var c = canvas.getContext("2d");
+	canvas.width = innerWidth - 30;
+	canvas.height = 837;
+	canvas.style.backgroundColor = "black";
+	var btn = document.querySelector("button");
+	var speed = 20;
+	var radius = 10;
+	var lx = (canvas.width / 2) + 8;
+	var pressed = true;
+	var cx = (canvas.width / 2) - radius;
+	var cy = (canvas.height / 2) - radius;
+	var pw = 20;
+	var ph = 125;
+	var px = canvas.width - 70;
+	var py = 225;
+	var score = 0;
+	var scoring = document.querySelector("h2");
+	scoring.style.display = "none";
+	var p1scoring = document.querySelector("h4");
+	var p2scoring = document.querySelector("h5");
+	var p1score = 0;
+	var p2score = 0;
+	var p1x = canvas.width - 70;
+	var p1y = 225;
+	var p2x = 50;
+	var p2y = 225;
+	var btn4 = document.querySelector(".button4");
+	var phelp = document.querySelector(".button4 p");
+	var btn5 = document.querySelector(".esc3");
+	var div3 = document.querySelector(".div3");
+	var btn6 = document.querySelector(".esc4");
+	var endgame = document.querySelector(".endgame");
+	var div4 = document.querySelector(".enddiv");
+	//titles
+	var partr = document.querySelector("#partr");
+	var partc = document.querySelector("#partc");
+	//rules
+	var parhelp1 = document.querySelector("#parhelp1");
+	var parhelp2 = document.querySelector("#parhelp2");
+	//controls
+	var parc1 = document.querySelector("#parc1");
+	var parc2 = document.querySelector("#parc2");
+	function play() {
+		if (pressed = true) {
+			btn.style.display = "none";
+			h1.style.display = "none";
+			div.style.display = "none";
+			div2.style.display = "block"
+			btn2.style.display = "block";
+			btn3.style.display = "block";
+			par1.style.display = "block";
+			par2.style.display = "block";
+			para.style.display = "block";
+			btn4.style.display = "block";
+			phelp.style.display = "block";
+			div3.style.display = "none";
+			btn6.style.display = "block";
+		}
+	}
+
+	function oneP() {
+		if(pressed == true) {
+			div2.style.display = "none"
+			btn2.style.display = "none";
+			btn3.style.display = "none";
+			par1.style.display = "none";
+			par2.style.display = "none";
+			canvas.style.display = "block";
+			scoring.style.display = "block";
+			para.style.display = "none";
+			div3.style.display = "none";
+			btn6.style.display = "none";
+			initCanvas();
+		}
+	}
+
+	function twoP() {
+		if(pressed == true) {
+			div2.style.display = "none"
+			btn2.style.display = "none";
+			btn3.style.display = "none";
+			p1scoring.style.display = "block";
+			p2scoring.style.display = "block";
+			canvas.style.display = "block";
+			para.style.display = "none";
+			initCanvasTwo();
+			pressed = false;
+			div3.style.display = "none";
+			btn6.style.display = "none";
+		}
+	}
+
+	function help() {
+		if(pressed == true) {
+			partr.style.display = "block";
+			partc.style.display = "block";
+			parhelp1.style.display = "block";
+			parhelp2.style.display = "block";
+			parc1.style.display = "block";
+			parc2.style.display = "block";
+			btn4.style.display = "none";
+			phelp.style.display = "none";
+			btn2.style.display = "none";
+			btn3.style.display = "none";
+			btn5.style.display = "block";
+			para.style.display = "none";
+			div3.style.display = "block";
+			btn6.style.display = "none";
+		}
+	}
+
+	function back() {
+		if (pressed = true) {
+			partr.style.display = "none";
+			partc.style.display = "none";
+			parhelp1.style.display = "none";
+			parhelp2.style.display = "none";
+			parc1.style.display = "none";
+			parc2.style.display = "none";
+			btn4.style.display = "block";
+			phelp.style.display = "block";
+			btn2.style.display = "block";
+			btn3.style.display = "block";
+			btn5.style.display = "none";
+			para.style.display = "block";
+			btn6.style.display = "block";
+			btn5.style.display = "none";
+		}
+	}
+
+	function back2() {
+		if (pressed = true) {
+			btn4.style.display = "none";
+			phelp.style.display = "none";
+			btn2.style.display = "none";
+			btn3.style.display = "none";
+			btn5.style.display = "none";
+			para.style.display = "none";
+			btn6.style.display = "none";
+			btn5.style.display = "none";
+			div2.style.display = "none";
+			h1.style.display = "block";
+			div.style.display = "block";
+			btn.style.display = "block";
+		}
+	}
+	//canvas-------------------
+	function initCanvas() {
+	//ball object----------
+	function Ball() {
+		this.cx = (canvas.width / 2) - radius;
+		this.cy = (canvas.height / 2) - radius;
+		this.cxs = -20;
+		this.cys = -4;
+		this.radius = 10;
+		this.cxl = (canvas.width / 2) - radius;
+		this.cyl = (canvas.height / 2) - radius;
+		this.draw = function() {
+		c.beginPath();
+		c.strokeStyle = "white";
+		c.fillStyle = "white"
+		c.arc(this.cx, this.cy, this.radius, 0, Math.PI * 2, (false));
+		c.stroke();
+		c.fill();
+		c.closePath();
+		}
+		this.update = function() {
+			if(this.cx < 0) {
+			this.cxs = -this.cxs;
+			}
+			if(this.cy < 0) {
+			this.cys = -this.cys;
+			}
+			if(this.cy > canvas.height) {
+			this.cys = -this.cys;
+			}
+			this.cx+=this.cxs;
+			this.cy+=this.cys;
+			this.draw();
+			}
+			
+	}
+	//ball itself---
+	var ball = new Ball();
+	//animation function----------
+	function animate() {
+		c.save();
+		c.clearRect(0, 0, canvas.width, canvas.height);
+		//draw here
+		ball.update();
+		//player------
+		c.beginPath();
+		c.fillStyle = "#FFF"
+		c.fillRect(px, py, 20, 125);
+		c.closePath();
+		//line
+		c.beginPath();
+		c.strokeStyle = "rgba(255,255,255,0.5)";
+		c.lineWidth = 5;
+		c.lineCap = "square";
+		c.setLineDash([20,10]);
+		c.moveTo(lx, 0);
+		c.lineTo(lx, canvas.height);
+		c.stroke();
+		c.closePath();
+		//end here
+		c.restore();
+
+		if (ball.cx >= px && ball.cx < px+20 && ball.cy >= py && ball.cy < py+125) {
+			ball.cxs = -ball.cxs;
+			ball.cys = -ball.cys;
+			score++;
+			scoring.innerHTML = score;
+		}
+		if (ball.cx > canvas.width) {
+			ball.cx = (canvas.width / 2) - radius;
+			ball.cy = (canvas.height / 2) - radius;
+			ball.cxs = -20;
+			ball.cys = Math.floor((Math.random() * -5) * 5);
+			score = 0;
+			scoring.innerHTML = score;
+		}
+		if(py > canvas.height - 100) {
+			py = (canvas.height / 2);
+		}
+		if(py < 0 - 25) {
+			py = (canvas.height / 2);
+		}
+	}
+	
+	var animateInterval = setInterval(animate, 20);
+	document.addEventListener("keydown", function(event) {
+		var press = String.fromCharCode(event.keyCode);
+		if(press == "W") {
+			py -= speed;
+		}
+		if(press == "S") {
+			py += speed;
+		}
+	});
+}
+
+function initCanvasTwo() {
+	p1scoring.innerHTML = p1score;
+	p2scoring.innerHTML = p2score;
+	//ball object----------
+	function Ball() {
+		this.cx = (canvas.width / 2) - radius;
+		this.cy = (canvas.height / 2) - radius;
+		this.cxs = -20;
+		this.cys = 0;
+		this.radius = 10;
+		this.cxl = (canvas.width / 2) - radius;
+		this.cyl = (canvas.height / 2) - radius;
+		this.draw = function() {
+		c.beginPath();
+		c.strokeStyle = "white";
+		c.fillStyle = "white"
+		c.arc(this.cx, this.cy, this.radius, 0, Math.PI * 2, (false));
+		c.stroke();
+		c.fill();
+		c.closePath();
+		}
+		this.update = function() {
+			if(this.cy < 0) {
+			this.cys = -this.cys;
+			}
+			if(this.cy > canvas.height) {
+			this.cys = -this.cys;
+			}
+			this.cx+=this.cxs;
+			this.cy+=this.cys;
+			this.draw();
+			}
+			
+	}
+	//ball itself---
+	var ball = new Ball();
+	//animation function----------
+	function animate() {
+		c.save();
+		c.clearRect(0, 0, canvas.width, canvas.height);
+		//draw here
+		ball.update();
+		//player1------
+		c.beginPath();
+		c.fillStyle = "#FFF"
+		c.fillRect(p1x, p1y, pw, ph);
+		c.closePath();
+		//player2
+		c.beginPath();
+		c.fillStyle = "#FFF"
+		c.fillRect(p2x, p2y, pw, ph);
+		c.closePath();
+		//line
+		c.beginPath();
+		c.strokeStyle = "rgba(255,255,255,0.5)";
+		c.lineWidth = 5;
+		c.lineCap = "square";
+		c.setLineDash([20,10]);
+		c.moveTo(lx, 0);
+		c.lineTo(lx, canvas.height);
+		c.stroke();
+		c.closePath();
+		//end here
+		c.restore();
+
+		//player 1 if statements
+		if (ball.cx >= p1x && ball.cx < p1x+20 && ball.cy >= p1y && ball.cy < p1y+125) {
+			ball.cxs = -ball.cxs;
+			ball.cys = -ball.cys;
+		}
+		if (ball.cx < 0) {
+			ball.cx = (canvas.width / 2) - radius;
+			ball.cy = (canvas.height / 2) - radius;
+			ball.cxs = 20;
+			ball.cys = Math.floor((Math.random() * -5) * 5);
+			p1score++;
+			p1scoring.innerHTML = p1score;
+		}
+		//player 2 if statements
+
+		if (ball.cx >= p2x && ball.cx < p2x+20 && ball.cy >= p2y && ball.cy < p2y+125) {
+			ball.cxs = -ball.cxs;
+			ball.cys = -ball.cys;
+		}
+		if (ball.cx > canvas.width) {
+			ball.cx = (canvas.width / 2) - radius;
+			ball.cy = (canvas.height / 2) - radius;
+			ball.cxs = -20;
+			ball.cys = Math.floor((Math.random() * -5) * 5);
+			p2score++;
+			p2scoring.innerHTML = p2score;
+		}
+		
+		//player 1 and 2 respawns
+		if(p1y > canvas.height - 100) {
+			p1y = (canvas.height / 2);
+		}
+		if(p1y < 0 - 25) {
+			p1y = (canvas.height / 2);
+		}
+		if(p2y > canvas.height - 100) {
+			p2y = (canvas.height / 2);
+		}
+		if(p2y < 0 - 25) {
+			p2y = (canvas.height / 2);
+		}
+	}
+	
+	var animateInterval = setInterval(animate, 20);
+	document.addEventListener("keydown", function(event) {
+		var press = String.fromCharCode(event.keyCode);
+		if(press == "I") {
+			p1y -= speed;
+		}
+		if(press == "K") {
+			p1y += speed;
+		}
+	});
+
+	document.addEventListener("keydown", function(event) {
+		var press = String.fromCharCode(event.keyCode);
+		if(press == "W") {
+			p2y -= speed;
+		}
+		if(press == "S") {
+			p2y += speed;
+		}
+	});
+}
+
+</script>
+</html>
 
 <!--echo "# pong-game" >> README.md
 git init
